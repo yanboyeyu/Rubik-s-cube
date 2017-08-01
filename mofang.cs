@@ -73,7 +73,7 @@ public class mofang : MonoBehaviour{
             {
                 mouseButtonhitPoint = hit1.point;       //获取碰撞点//
             }
-            if(!isChangParent && (Mathf.Abs(mouseButtonhitPoint.x - mouseButtonDownhitPoint.x) > 0.5 || Mathf.Abs(mouseButtonhitPoint.y - mouseButtonDownhitPoint.y) > 0.5))
+            if(!isChangParent && (Mathf.Abs(mouseButtonhitPoint.x - mouseButtonDownhitPoint.x) > 0.5 || Mathf.Abs(mouseButtonhitPoint.y - mouseButtonDownhitPoint.y) > 0.5 || Mathf.Abs(mouseButtonhitPoint.z - mouseButtonDownhitPoint.z) > 0.5))
             {
                 RotationMessage message = TouchRotation(); //测试完用下一条
                 //TouchRotation(); 
@@ -153,12 +153,12 @@ public class mofang : MonoBehaviour{
                         }
                     }
                 }
-                mouseButtonPoint = Input.mousePosition;//获取鼠标最后位置//
+                //mouseButtonPoint = Input.mousePosition;//获取鼠标最后位置//
                 if (Mathf.Abs(mouseButtonhitPoint.x - mouseButtonDownhitPoint.x) > 0.5)
                 {
                     Vector3 pos = rateWasGameObject.transform.position;
                     if(pos.y>-1.2&&pos.y<-0.8){
-                        this.rotationMessage.scriptRotationController = ScriptRotationController.rotation_y_1;
+                        rotationMessage.scriptRotationController = ScriptRotationController.rotation_y_1;
                     }else if(pos.y > -0.2 && pos.y <0.2)
                     {
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_y_2;
@@ -166,7 +166,7 @@ public class mofang : MonoBehaviour{
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_y_3;
                     }
                     Quaternion angles = Quaternion.Euler(AnchorPoint.transform.eulerAngles);
-                    if ((mouseButtonhitPoint.x - mouseButtonDownhitPoint.x) > 0)
+                    if ((mouseButtonhitPoint.x - mouseButtonDownhitPoint.x) > 0^(collideNormal.z>0))
                     {
                         rotationMessage.dir = true;
                         targetAngle = Quaternion.Euler(angles.x, angles.y - 90, angles.z);
@@ -195,7 +195,7 @@ public class mofang : MonoBehaviour{
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_x_3;
                     }
                     Quaternion angles = Quaternion.Euler(AnchorPoint.transform.eulerAngles);
-                    if ((mouseButtonhitPoint.y - mouseButtonDownhitPoint.y) > 0)
+                    if ((mouseButtonhitPoint.y - mouseButtonDownhitPoint.y) > 0 ^ (collideNormal.z > 0))
                     {
                         rotationMessage.dir = false;
                         targetAngle = Quaternion.Euler(angles.x + 90, angles.y, angles.z);
@@ -235,7 +235,7 @@ public class mofang : MonoBehaviour{
                         }
                     }
                 }
-                mouseButtonPoint = Input.mousePosition;//获取鼠标最后位置//
+                //mouseButtonPoint = Input.mousePosition;//获取鼠标最后位置//
                 if (Mathf.Abs(mouseButtonhitPoint.z - mouseButtonDownhitPoint.z) > 0.5)
                 {
                     Vector3 pos = rateWasGameObject.transform.position;
@@ -243,7 +243,7 @@ public class mofang : MonoBehaviour{
                     {
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_y_1;
                     }
-                    else if (pos.x > -0.2 && pos.x < 0.2)
+                    else if (pos.y > -0.2 && pos.y < 0.2)
                     {
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_y_2;
                     }
@@ -252,7 +252,7 @@ public class mofang : MonoBehaviour{
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_y_3;
                     }
                     Quaternion angles = Quaternion.Euler(AnchorPoint.transform.eulerAngles);
-                    if ((mouseButtonhitPoint.z - mouseButtonDownhitPoint.z) > 0)
+                    if ((mouseButtonhitPoint.z - mouseButtonDownhitPoint.z) > 0 ^ (collideNormal.x < 0))
                     {
                         rotationMessage.dir = true;
                         targetAngle = Quaternion.Euler(angles.x, angles.y - 90, angles.z);
@@ -281,7 +281,7 @@ public class mofang : MonoBehaviour{
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_z_3;
                     }
                     Quaternion angles = Quaternion.Euler(AnchorPoint.transform.eulerAngles);
-                    if ((mouseButtonhitPoint.y - mouseButtonDownhitPoint.y) > 0)
+                    if ((mouseButtonhitPoint.y - mouseButtonDownhitPoint.y) > 0 ^ (collideNormal.x < 0))
                     {
                         rotationMessage.dir = false;
                         targetAngle = Quaternion.Euler(angles.x, angles.y, angles.z + 90);
@@ -321,7 +321,7 @@ public class mofang : MonoBehaviour{
                         }
                     }
                 }
-                mouseButtonPoint = Input.mousePosition;//获取鼠标最后位置//
+                //mouseButtonPoint = Input.mousePosition;//获取鼠标最后位置//
                 if (Mathf.Abs(mouseButtonhitPoint.z - mouseButtonDownhitPoint.z) > 0.5)
                 {
                     Vector3 pos = rateWasGameObject.transform.position;
@@ -338,7 +338,7 @@ public class mofang : MonoBehaviour{
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_x_3;
                     }
                     Quaternion angles = Quaternion.Euler(AnchorPoint.transform.eulerAngles);
-                    if ((mouseButtonhitPoint.z - mouseButtonDownhitPoint.z) > 0)
+                    if ((mouseButtonhitPoint.z - mouseButtonDownhitPoint.z) > 0 ^ (collideNormal.y < 0))
                     {
                         rotationMessage.dir = false;
                         targetAngle = Quaternion.Euler(angles.x + 90, angles.y, angles.z);
@@ -367,7 +367,7 @@ public class mofang : MonoBehaviour{
                         rotationMessage.scriptRotationController = ScriptRotationController.rotation_z_3;
                     }
                     Quaternion angles = Quaternion.Euler(AnchorPoint.transform.eulerAngles);
-                    if ((mouseButtonhitPoint.x - mouseButtonDownhitPoint.x) > 0)
+                    if ((mouseButtonhitPoint.x - mouseButtonDownhitPoint.x) > 0 ^ (collideNormal.y < 0))
                     {
                         rotationMessage.dir = true;
                         targetAngle = Quaternion.Euler(angles.x, angles.y, angles.z - 90);
